@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarea 7 – Estela del Mouse</title>
+  <style>
+    body {
+      background-color: #f7efff;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .contenedor {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .punto {
+      width: 10px;
+      height: 10px;
+      background-color: #b38acb; 
+      border-radius: 50%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="contenedor"></div>
+
+  <script>
+    
+    let puntos = [];
+
+    
+    const contenedor = document.getElementsByClassName("contenedor")[0];
+
+    
+    document.addEventListener("mousemove", function(evento) {
+      
+      let punto = document.createElement("div");
+      punto.classList.add("punto");
+
+      
+      punto.style.left = evento.pageX + "px";
+      punto.style.top = evento.pageY + "px";
+
+      contenedor.appendChild(punto);
+
+      
+      puntos.push(punto);
+
+    
+      if (puntos.length > 30) {
+        let primero = puntos.shift();
+        primero.remove();
+      }
+    });
+  </script>
+</body>
+</html>
